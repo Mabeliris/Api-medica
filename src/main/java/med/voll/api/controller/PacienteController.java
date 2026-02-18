@@ -40,4 +40,6 @@ public class PacienteController {
         return pagedResourcesAssembler.toModel(paginas, pacienteDtoModelAssembler);
     }
 
+
+
 }

@@ -39,4 +39,18 @@ public class MedicoController {
         // Esto garantiza que cada objeto DatosListaMedico sea envuelto en un EntityModel, proporcionando una estructura JSON estable y permitiendo añadir links adicionales.
         return pagedResourcesAssembler.toModel(pagina, medicoDtoModelAssembler);
     }
+
+    @Transactional
+    @PutMapping
+    public void actualizar(@RequestBody @Valid ActualizarMedicoDto datosActualizados){
+
+        var medico= repository.getReferenceById(datosActualizados.id());
+        medico.actualizarInformacion(datosActualizados);
+
+    }
+
+    @DeleteMapping("/{id}")
+    public void eliminarMedico(@PathVariable Long id){
+       repository.deleteById(id);
+    }
 }
