@@ -1,6 +1,4 @@
-package med.voll.api.medico;
-
-
+package med.voll.api.domain.paciente;
 
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
@@ -8,40 +6,41 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import med.voll.api.direccion.Direccion;
+import med.voll.api.domain.direccion.Direccion;
 
-@Table(name = "medicos")
-@Entity(name = "Medico")
+@Table(name = "pacientes")
+@Entity(name = "Paciente")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Medico {
+public class Paciente {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Boolean active;
     private String nombre;
     private String email;
     private String telefono;
     private String documento;
 
-    @Enumerated(EnumType.STRING)
-    private Especialidad especialidad;
-
     @Embedded
     private Direccion direccion;
 
-    public Medico(DatosRegistrosMedicos datos) {
+
+    public Paciente(@Valid DatosRegistroPaciente datos) {
         this.id = null;
+        this.active=true;
         this.nombre = datos.nombre();
         this.email = datos.email();
         this.telefono = datos.telefono();
         this.documento = datos.documento();
-        this.especialidad = datos.especialidad();
         this.direccion = new Direccion(datos.direccion());
     }
 
-    public void actualizarInformacion(@Valid ActualizarMedicoDto datosActualizados) {
+    public void actualizarInformacion(@Valid ActualizaPacienteDto datosActualizados) {
+
         if(datosActualizados.nombre()!= null){
             this.nombre= datosActualizados.nombre();
         }
@@ -54,7 +53,9 @@ public class Medico {
             this.direccion.actualizarDireccion((datosActualizados.datosDireccion()));
         }
 
+    }
 
-
+    public void eliminar() {
+        this.active= false;
     }
 }
