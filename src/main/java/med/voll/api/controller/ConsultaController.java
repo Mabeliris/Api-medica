@@ -22,9 +22,9 @@ public class ConsultaController {
     @Transactional
     public ResponseEntity reservar(@RequestBody @Valid DatosReservaConsulta datos){
 
-        reservaDeConsultas.reservar(datos);
-        System.out.println(datos);
-        return ResponseEntity.ok(new DatosDetalleConsulta(null,null,null,null));
+        var detalleConsulta = reservaDeConsultas.reservar(datos);
+
+        return ResponseEntity.ok(detalleConsulta);
 
     }
 

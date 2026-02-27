@@ -13,7 +13,7 @@ public record DatosReservaConsulta(
         @NotNull
         @Future
         LocalDateTime fecha,
-        String especialidad
+        Especialidad especialidad
 
 
 ) {
