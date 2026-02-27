@@ -20,7 +20,7 @@ public class ValidacionPacienteSinOtraConsultaMismoDia implements ValidadorDeCon
         LocalDateTime primerHorario = datos.fecha().withHour(7);
         LocalDateTime ultimoHorario = datos.fecha().withHour(18);
 
-        boolean pacienteTieneOtraConsulta = consultaRepository.existByPacienteIdAndFechaBetween(
+        boolean pacienteTieneOtraConsulta = consultaRepository.existsByPacienteIdAndFechaBetween(
                 datos.idPaciente(), primerHorario, ultimoHorario);
 
         if (pacienteTieneOtraConsulta) {

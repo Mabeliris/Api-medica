@@ -15,7 +15,7 @@ public class ValidacionMedicoConOtraConsultaMismoHorario implements ValidadorDeC
     private ConsultaRepository consultaRepository;
 
     public void validar(DatosReservaConsulta datos) {
-        boolean medicoTieneOtraConsulta = consultaRepository.existByMedicoIdAndFecha(
+        boolean medicoTieneOtraConsulta = consultaRepository.existsByMedicoIdAndFecha(
                 datos.idMedico(), datos.fecha());
 
         if (medicoTieneOtraConsulta) {
