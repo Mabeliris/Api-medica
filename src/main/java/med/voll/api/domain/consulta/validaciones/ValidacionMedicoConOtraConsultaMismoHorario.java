@@ -1,6 +1,7 @@
 package med.voll.api.domain.consulta.validaciones;
 
-import jakarta.validation.ValidationException;
+
+import med.voll.api.domain.ValidacionException;
 import med.voll.api.domain.consulta.ConsultaRepository;
 import med.voll.api.domain.consulta.DatosReservaConsulta;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class ValidacionMedicoConOtraConsultaMismoHorario implements ValidadorDeC
                 datos.idMedico(), datos.fecha());
 
         if (medicoTieneOtraConsulta) {
-            throw new ValidationException("Médico ya tiene otra consulta en esa misma fecha y hora");
+            throw new ValidacionException("Médico ya tiene otra consulta en esa misma fecha y hora");
         }
     }
 }

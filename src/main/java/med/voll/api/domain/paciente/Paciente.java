@@ -29,6 +29,7 @@ public class Paciente {
     private Direccion direccion;
 
 
+
     public Paciente(@Valid DatosRegistroPaciente datos) {
         this.id = null;
         this.active=true;
